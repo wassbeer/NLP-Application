@@ -1,4 +1,4 @@
-#NLP Application
+# NLP Application
 
 The Adjective Finder algorithm is a Natural Language Processing(NLP) application searching for adjectives by comparing the words in the input to the Part-Of-Speech(POS) Lexicon as compilated by Eric Brill in 1993. The lexicon is an extensive word list with POS word type tags:
 

@@ -1,7 +1,5 @@
 //  0.2 POS-lexicon with "interpunctie" added
 
-// console.log(englishLexicon.House)
-
 let lexicon = {
     "\'": [
         "\""
@@ -297830,6 +297828,6 @@ let lexicon = {
     ]
 }
 
-module.exports{
+module.exports = {
     lexicon: lexicon
 }
