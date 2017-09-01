@@ -1,4 +1,3 @@
-
 # NLP-Adjective Application
 
 ## 1. Write the algorithm
@@ -63,6 +62,16 @@ WP Wh pronoun               who,what
 WP$ Possessive-Wh           whose
 WRB Wh-adverb               how,where
 
+
+DT Determiner               the,some
+IN Preposition              of,in,by
+JJ Adjective                big
+MD Modal                    can,should
+NN Noun, sing. or mass      dog
+NNP Proper noun, sing.      Edinburgh
+RB Adverb                   quickly
+VB verb, base form          eat
+
 ### The algorithm
 
 _Prototypes_
@@ -80,7 +89,7 @@ _Bigram Probabilities_
 
 0.5 A bigramprobabilities object stores probabilities as values of the properties named according to the tag sequence. For instance: "NN_JJ"
 
-Input: a piece of literature
+1.0 Input: a piece of literature
 
 _Converting input to array of words_
 
@@ -117,7 +126,7 @@ Speed: How fast are they? Is there a more efﬁcient solution? Wholeness: do the
 ## 2. Program the algorithm
 ## 3. Render the result in D3.js
 
-Source list:
+Sources:
 * http://cs.nyu.edu/courses/spring12/CSCI-GA.2590-001/lecture4.pdf 
 * https://en.wikipedia.org/wiki/Part-of-speech_tagging
 * https://en.wikipedia.org/wiki/Brill_tagger 

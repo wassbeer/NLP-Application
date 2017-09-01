@@ -26421,8 +26421,8 @@ let lexicon = {
     ],
     "have": [
         "VBP",
-        "JJ",
         "NN",
+        "JJ",
         "VB",
         "VBN"
     ],
@@ -266794,8 +266794,8 @@ let lexicon = {
     ],
     "going": [
         "VBG",
-        "JJ",
-        "NN"
+        "NN",
+        "JJ"
     ],
     "shantung-like": [
         "JJ"

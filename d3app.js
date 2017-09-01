@@ -1,23 +1,70 @@
-const fs = require("fs"),
-prototype = require("./libs/prototypes")
-lexicon = require("./libs/lexicon"),
-bigramProbabilities = require("./libs/bigramProbabilities")
+const fs = require( "fs" ),
+	csv = require( "csv" ),
+	stringify = require( "csv-stringify" ),
+	prototype = require( "./libs/prototypes" ),
+lexicon = require( "./libs/lexicon" ),
+	bigramProbabilities = require( "./libs/bigramProbabilities" ),
+	port = process.env.PORT || 5000;
 
 // 1.0 Input: a TXT file
 
-let input = process.argv[2];
+let input = process.argv[ 2 ];
+
+//1.01 App configuration
+
+const express = require( "express" ),
+	app = express();
+app.use( express.static( __dirname + "/public" ) );
+
+// 1.04 Server configuration
+
+app.listen( port, ( res ) => {
+	console.log( "App listening in port " + port )
+} )
 
 // 1.1 input to inputArray
 
 function returnAdjective( input ) {
-	fs.readFile(input, (err, data) => {
-	input = data.toString();
-	let inputArray = input.replace( /[!?.]/g, " [interpunctie] " ); // punctuation replaced by "[interpunctie]"
-	inputArray = inputArray.replace( /[,#@()%\^&*<>_%]"/g, "" ); 	// non Alphabetical and number characters are deleted
-	inputArray = inputArray.replace( "\'s", " his" ).replace( "n\'t", " not" ).replace( "\'d", " would" ).replace( "\'ve", " have" ).replace( "\'ll", " will" ).replace( "\'re", " are" ); 	// separating abbreviated words
-	inputArray = inputArray.split( " " ); 	// splitting at space
-	findPotentialAdjectives( inputArray )
-	})
+	fs.readFile( input, ( err, data ) => {
+		input = data.toString();
+		let inputArray = input.replace( /[!?.]/g, " [interpunctie] " ), // punctuation replaced by "[interpunctie]"
+			inputArrayOne = inputArray.replace( /\'s/g, " his" ).replace( /n\'t/g, " not" ),
+			inputArrayTwo = inputArrayOne.replace( /[^a-zA-Z\d\s:]/g, "" ), // Deleting all non-alphanumerical except spaces
+			inputArrayThree = inputArrayTwo.split( " " ); // splitting at space
+		findPotentialAdjectives( inputArrayThree );
+			/*
+				[ '﻿My',
+			  'fellow',
+			  'citizens',
+			  'I',
+			  'stand',
+			  'here',
+			  'today',
+			  'humbled',
+			  'by',
+			  'the',
+			  'task',
+			  'before',
+			  'us',
+			  'grateful',
+			  'for',
+			  'the',
+			  'trust',
+			  'you',
+			  'have',
+			  'bestowed',
+			  'mindful',
+			  'of',
+			  'the',
+			  'sacrifices',
+			  'borne',
+			  'by',
+			  'our',
+			  'ancestors',
+			  'interpunctie',
+			  ...]
+				*/
+	} )
 }
 
 // 1.2 find potential adjectives
@@ -57,12 +104,33 @@ function findPotentialAdjectives( inputArray ) {
 								bigram = [];
 							bigram.push( before[ 0 ], tags[ j ], "XX" ) // "XX" Signifying the ambiguous adjective position
 							bigramObj = new prototype.bigramObject( bigram, probability );
-							bigrams.push( bigramObj )
+							bigrams.push( bigramObj );
+							/*
+							[   bigramObject {
+							    tagseq: [ 'DT', 'NNP', 'XX' ],
+							    probability: 0.00010384362139917695 },
+							  	bigramObject {
+							    tagseq: [ 'DT', 'JJ', 'XX' ],
+							    probability: 0.0000024109129705837526 },
+							  	bigramObject {
+							    tagseq: [ 'DT', 'NN', 'XX' ],
+							    probability: 2.1820756103583357e-8 } ]
+							*/
 						}
-						ambiguous = new prototype.potentialAdjective( `${inputArray[i-1]}`, tags, bigrams, position, frequency );
-						ambiguousAdjective.push( ambiguous )
+						ambiguous = new prototype.potentialAdjective( `flare.unsure.${inputArray[i-1]}`, tags, bigrams, position, frequency );
+						ambiguousAdjective.push( ambiguous );
+						/*
+							potentialAdjective {
+						  word: 'flare.unsure.great',
+						  tags: [ 'JJ', 'RB' ],
+						  bigrams:
+						   [ bigramObject { tagseq: [Object], probability: 0.011000000000000001 },
+						     bigramObject { tagseq: [Object], probability: 0.003177777777777778 } ],
+						  position: 2789,
+						  frequency: 1 }
+						  */
 					} else {
-						if ( after[ 0 ] !== "XX" && after[ 0 ] !== undefined ) {
+						if ( after ) {
 							let bigrams = [],
 								tagProbability = 0.66;
 							for ( let j = 0; j < tags.length; j++ ) { // storing the potential bigrams in an array
@@ -84,48 +152,72 @@ function findPotentialAdjectives( inputArray ) {
 									bigram = [];
 								bigram.push( "XX", tags[ j ], after[ 0 ] ); // "XX" Signifying the ambiguous adjective position
 								bigramObj = new prototype.bigramObject( bigram, probability );
-								bigrams.push( bigramObj )
+								bigrams.push( bigramObj );
 							}
-							ambiguous = new prototype.potentialAdjective( `${inputArray[i-1]}`, tags, bigrams, position, frequency );
-							ambiguousAdjective.push( ambiguous )
+							ambiguous = new prototype.potentialAdjective( `flare.unsure.${inputArray[i-1]}`, tags, bigrams, position, frequency );
+							ambiguousAdjective.push( ambiguous );
 						}
 					}
 				} else { // if JJ is the only tag
-					certain = new prototype.trueAdjective( `${inputArray[i-1]}`, tags, position, frequency );
-					certainAdjective.push( `${inputArray[i-1]}` )
+					certain = new prototype.trueAdjective( `flare.sure.${inputArray[i-1]}`, tags, position, frequency );
+					certainAdjective.push( certain );
 				}
 			}
 		}
 	}
-	mostProbableBigram( ambiguousAdjective, certainAdjective )
+	distinguishCertainAdjective( ambiguousAdjective, certainAdjective );
 }
 
-// 1.3.1 Filter Ambiguous: which bigram is most probable?
+// 1.3 Determine certain adjectives
 
-function mostProbableBigram( ambiguousAdjective, certainAdjective ) {
+function distinguishCertainAdjective( ambiguousAdjective, certainAdjective ) {
 	for ( let y = 0; y < ambiguousAdjective.length; y++ ) {
 		let bigrams = ambiguousAdjective[ y ].bigrams;
 		for ( let k = 1; k < bigrams.length; k++ ) {
-			for ( let j = 1; j < bigrams.length; j++ ) {
+			for ( let j = 1; j < bigrams.length; j++ ) { // Which bigram is most probable?
 				if ( bigrams[ j ].probability >= bigrams[ j - 1 ].probability || bigrams[ j - 1 ].probability === undefined ) {
 					bigrams.splice( j - 1, 1 );
 				}
 			}
 		}
 	}
-	assessWinningBigram( ambiguousAdjective, certainAdjective )
-}
-
-// 1.3.2 Filter Ambiguous: does the most probable bigram contain an adjective?
-
-function assessWinningBigram( ambiguousAdjective, certainAdjective ) {
 	for ( let y = 0; y < ambiguousAdjective.length; y++ ) {
 		let winningBigram = ambiguousAdjective[ y ].bigrams[ 0 ].tagseq;
 		if ( winningBigram[ 1 ] === "JJ" ) {
-			certainAdjective.push( ambiguousAdjective[ y ].word )
+			certainAdjective.push( ambiguousAdjective[ y ] );
 		}
 	}
-	console.log( certainAdjective )
+
+	// 1.4 Process frequency 
+
+	function sortAndSpliceDouble( array ) {
+		array.sort( function( a, b ) { return ( a.word > b.word ) ? 1 : ( ( b.word > a.word ) ? -1 : 0 ); } );
+		for ( let j = 1; j < 50; j++ ) {
+			for ( let i = 1; i < array.length; i++ ) {
+				if ( array[ i - 1 ].word === array[ i ].word ) {
+					array[ i - 1 ].frequency = array[ i - 1 ].frequency + 2;
+					array.splice( i, 1 )
+				}
+			}
+		}
+	}
+
+	sortAndSpliceDouble( certainAdjective );
+
+	// 1.5 To CSV
+
+	let csvData = [];
+	for ( let k = 0; k < certainAdjective.length; k++ ) {
+		let word = certainAdjective[ k ].word,
+			frequency = certainAdjective[ k ].frequency;
+		csvData.push( new prototype.csvAdjective( word, frequency ) );
+	}
+	stringify( csvData, function( err, output ) {
+		newCsv = "id,value" + "\n" + "flare," + "\n" + "flare.vis," + "\n" + output;
+		fs.writeFile( "./public/flare1.csv", newCsv, ( err ) => {
+			if ( err ) { throw err }
+		} )
+	} )
 }
 
-returnAdjective( input )
+returnAdjective( input );

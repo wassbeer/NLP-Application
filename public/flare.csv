@@ -1,0 +1,46 @@
+id,value
+flare,
+flare.vis,
+
+// Dark Purple
+
+flare.vis.3hit,
+flare.vis.3hit.Progressive,500
+flare.vis.3hit.Rural,500	
+flare.vis.3hit.Nagging,500
+flare.vis.3hit.grandest,100
+small,"[""JJ""]",1508,100
+sturdy,"[""JJ""]",1565,100
+
+
+// Middle Purple
+
+flare.vis.2hit,
+flare.vis.2hit.Eary,250
+flare.vis.2hit.Bizarre,250
+flare.vis.2hit.Dodgy,250
+flare.vis.2hit.Blue,250
+flare.vis.2hit.Anchorish,250
+
+// Light Purple
+
+flare.vis.1hit,
+flare.vis.1hit.Bornish,100
+flare.vis.1hit.Geezy,100
+flare.vis.1hit.Bornish,100
+flare.vis.1hit.Geezy,100
+flare.vis.1hit.Bornish,100
+flare.vis.1hit.Geezy,100
+flare.vis.1hit.Bornish,100
+flare.vis.1hit.Geezy,100
+flare.vis.1hit.Bornish,100
+flare.vis.1hit.Geezy,100
+flare.vis.1hit.Bornish,100
+flare.vis.1hit.Geezy,100
+flare.vis.1hit.Bornish,100
+flare.vis.1hit.Geezy,100
+flare.vis.1hit.Bornish,100
+flare.vis.1hit.Geezy,100
+flare.vis.1hit.Bornish,100
+
+

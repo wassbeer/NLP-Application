@@ -20,8 +20,14 @@ function bigramObject( tagseq, probability ) {
 	this.probability = probability;
 }
 
+function csvAdjective( word, frequency ) {
+	this.word = word;
+	this.frequency = frequency;
+}
+
 module.exports = {
 	trueAdjective: trueAdjective,
 	potentialAdjective: potentialAdjective,
-	bigramObject: bigramObject
+	bigramObject: bigramObject,
+	csvAdjective: csvAdjective
 }
