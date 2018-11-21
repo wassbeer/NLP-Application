@@ -1,5 +1,3 @@
-// 0.1 prototypes
-
 function trueAdjective( word, tags, position, frequency ) {
 	this.word = word;
 	this.tags = tags;

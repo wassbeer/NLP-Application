@@ -1,37 +1,17 @@
 const fs = require( "fs" ),
-	csv = require( "csv" ),
-	stringify = require( "csv-stringify" ),
 	prototype = require( "./libs/prototypes" ),
 	lexicon = require( "./libs/lexicon" ),
 	bigramProbabilities = require( "./libs/bigramProbabilities" ),
-	port = process.env.PORT || 5000;
-
-// 1.0 Input: a TXT file
-
-let input = process.argv[ 2 ];
-
-//1.01 App configuration
-
-const express = require( "express" ),
-	app = express();
-app.use( express.static( __dirname + "/public" ) );
-
-// 1.04 Server configuration
-
-app.listen( port, ( res ) => {
-	console.log( "App listening in port " + port )
-} )
-
-// 1.1 input to inputArray
+	stringify = require( "csv-stringify" );
 
 function returnAdjective( input ) {
 	fs.readFile( input, ( err, data ) => {
-		input = data.toString();
-		let inputArray = input.replace( /[!?.]/g, " [interpunctie] " ), // punctuation replaced by "[interpunctie]"
-			inputArrayOne = inputArray.replace( /\'s/g, " his" ).replace( /n\'t/g, " not" ),
-			inputArrayTwo = inputArrayOne.replace( /[^a-zA-Z\d\s:]/g, "" ), // Deleting all non-alphanumerical except spaces
-			inputArrayThree = inputArrayTwo.split( " " ); // splitting at space
-		findPotentialAdjectives( inputArrayThree );
+		if (err) { throw err; }
+		let arrayOfTextWords = data.toString()
+			.replace( /[!?.]/g, "[interpunction]" )
+			.replace( /[^a-zA-Z\d\s:]/g, "" )
+			.split( " " );
+		findPotentialAdjectives( arrayOfTextWords );
 		/*
 			[ '﻿My',
 		  'fellow',
@@ -171,16 +151,16 @@ function findPotentialAdjectives( inputArray ) {
 // 1.3 Determine certain adjectives
 
 function distinguishCertainAdjective( ambiguousAdjective, certainAdjective ) {
-	for ( let y = 0; y < ambiguousAdjective.length; y++ ) {
-		let bigrams = ambiguousAdjective[ y ].bigrams;
-		for ( let k = 1; k < bigrams.length; k++ ) {
-			for ( let j = 1; j < bigrams.length; j++ ) { // Which bigram is most probable?
-				if ( bigrams[ j ].probability >= bigrams[ j - 1 ].probability || bigrams[ j - 1 ].probability === undefined ) {
-					bigrams.splice( j - 1, 1 );
+	ambiguousAdjective.forEach((ambAdj) => {
+		for ( let k = 1; k < ambAdj.bigrams.length; k++ ) {
+			for ( let j = 1; j < ambAdj.bigrams.length; j++ ) { // Which bigram is most probable?
+				if ( ambAdj.bigrams[ j ].probability >= ambAdj.bigrams[ j - 1 ].probability || ambAdj.bigrams[ j - 1 ].probability === undefined ) {
+					ambAdj.bigrams.splice( j - 1, 1 );
 				}
 			}
 		}
-	}
+	});
+	
 	for ( let y = 0; y < ambiguousAdjective.length; y++ ) {
 		let winningBigram = ambiguousAdjective[ y ].bigrams[ 0 ].tagseq;
 		if ( winningBigram[ 1 ] === "JJ" ) {
@@ -220,4 +200,4 @@ function distinguishCertainAdjective( ambiguousAdjective, certainAdjective ) {
 	} )
 }
 
-returnAdjective( input );
+module.exports = returnAdjective;

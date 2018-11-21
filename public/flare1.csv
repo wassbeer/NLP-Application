@@ -18,7 +18,7 @@ flare.sure.honest,1
 flare.sure.likeliest,1
 flare.sure.lucky,1
 flare.sure.new,9
-flare.sure.old,3
+flare.sure.old,1
 flare.sure.perfect,1
 flare.sure.political,1
 flare.sure.same,1
@@ -27,6 +27,7 @@ flare.sure.timeless,1
 flare.sure.true,3
 flare.sure.unsung,1
 flare.sure.unyielding,3
+flare.sure.wont,1
 flare.unsure.Asian,1
 flare.unsure.Democratic,1
 flare.unsure.Hispanic,1
@@ -41,11 +42,10 @@ flare.unsure.built,1
 flare.unsure.call,1
 flare.unsure.chief,1
 flare.unsure.cold,1
-flare.unsure.coming,1
 flare.unsure.common,1
 flare.unsure.connected,1
-flare.unsure.disabled,3
-flare.unsure.done,3
+flare.unsure.disabled,1
+flare.unsure.done,1
 flare.unsure.earned,1
 flare.unsure.enduring,1
 flare.unsure.false,1
@@ -61,14 +61,14 @@ flare.unsure.last,1
 flare.unsure.less,1
 flare.unsure.little,3
 flare.unsure.living,1
-flare.unsure.long,7
+flare.unsure.long,5
 flare.unsure.many,7
 flare.unsure.more,7
 flare.unsure.much,5
 flare.unsure.national,1
-flare.unsure.next,1
+flare.unsure.next,3
 flare.unsure.open,1
-flare.unsure.other,3
+flare.unsure.other,1
 flare.unsure.own,1
 flare.unsure.past,1
 flare.unsure.poor,1
@@ -79,7 +79,6 @@ flare.unsure.rich,1
 flare.unsure.shared,1
 flare.unsure.singular,1
 flare.unsure.standing,1
-flare.unsure.steep,1
 flare.unsure.straight,1
 flare.unsure.strained,1
 flare.unsure.thriving,1

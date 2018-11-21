@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/wassbeer/NLP-Application#readme",
   "dependencies": {
-    "csv": "^1.1.1"
+    "csv": "^1.1.1",
+    "express": "^4.16.4"
   }
 }
