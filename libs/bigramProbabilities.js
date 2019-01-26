@@ -1,294 +1,290 @@
-let bigramProbabilities = {
-	"NNP_JJ": [
+module.exports = {
+	'NNP_JJ': [
 		0.0084
 	],
-	"MD_JJ": [
+	'MD_JJ': [
 		0.0005
 	],
-	"VB_JJ": [
+	'VB_JJ': [
 		0.0837
 	],
-	"JJ_JJ": [
+	'JJ_JJ': [
 		0.0733
 	],
-	"NN_JJ": [
+	'NN_JJ': [
 		0.0086
 	],
-	"RB_JJ": [
+	'RB_JJ': [
 		0.1012
 	],
-	"DT_JJ": [
+	'DT_JJ': [
 		0.2157
 	],
-	"NNP_RB": [
+	'NNP_RB': [
 		0.009
 	],
-	"MD_RB": [
+	'MD_RB': [
 		0.1698
 	],
-	"VB_RB": [
+	'VB_RB': [
 		0.0514
 	],
-	"JJ_RB": [
+	'JJ_RB': [
 		0.0036
 	],
-	"NN_RB": [
+	'NN_RB': [
 		0.0177
 	],
-	"RB_RB": [
+	'RB_RB': [
 		0.0728
 	],
-	"DT_RB": [
+	'DT_RB': [
 		0.0102
 	],
-	"NNP_VB": [
+	'NNP_VB': [
 		0.0009
 	],
-	"MD_VB": [
+	'MD_VB': [
 		0.7968
 	],
-	"VB_VB": [
+	'VB_VB': [
 		0.005
 	],
-	"JJ_VB": [
+	'JJ_VB': [
 		0.0004
 	],
-	"NN_VB": [
+	'NN_VB': [
 		0.0014
 	],
-	"RB_VB": [
+	'RB_VB': [
 		0.1011
 	],
-	"DT_VB": [
+	'DT_VB': [
 		0.0002
 	],
-	"NNP_NN": [
+	'NNP_NN': [
 		0.0584
 	],
-	"MD_NN": [
+	'MD_NN': [
 		0.0008
 	],
-	"VB_NN": [
+	'VB_NN': [
 		0.0615
 	],
-	"JJ_NN": [
+	'JJ_NN': [
 		0.4509
 	],
-	"NN_NN": [
+	'NN_NN': [
 		0.1216
 	],
-	"RB_NN": [
+	'RB_NN': [
 		0.012
 	],
-	"DT_NN": [
+	'DT_NN': [
 		0.4744
 	],
-	"NNP_NNP": [
+	'NNP_NNP': [
 		0.3777
 	],
-	"MD_NNP": [
+	'MD_NNP': [
 		0.0008
 	],
-	"VB_NNP": [
+	'VB_NNP': [
 		0.0322
 	],
-	"JJ_NNP": [
+	'JJ_NNP': [
 		0.0366
 	],
-	"NN_NNP": [
+	'NN_NNP': [
 		0.0096
 	],
-	"RB_NNP": [
+	'RB_NNP': [
 		0.0068
 	],
-	"DT_NNP": [
+	'DT_NNP': [
 		0.1147
 	],
-	"NNP_IN": [
+	'NNP_IN': [
 		0.1
 	],
-	"MD_IN": [
+	'MD_IN': [
 		0.1
 	],
-	"VB_IN": [
+	'VB_IN': [
 		0.5
 	],
-	"JJ_IN": [
+	'JJ_IN': [
 		0.4
 	],
-	"NN_IN": [
+	'NN_IN': [
 		0.2
 	],
-	"RB_IN": [
+	'RB_IN': [
 		0.1
 	],
-	"DT_IN": [
+	'DT_IN': [
 		0.05
 	],
-	"NNP_DT": [
+	'NNP_DT': [
 		0.0025
 	],
-	"MD_DT": [
+	'MD_DT': [
 		0.0041
 	],
-	"VB_DT": [
+	'VB_DT': [
 		0.2231
 	],
-	"JJ_DT": [
+	'JJ_DT': [
 		0.0036
 	],
-	"NN_DT": [
+	'NN_DT': [
 		0.0068
 	],
-	"RB_DT": [
+	'RB_DT': [
 		0.0479
 	],
-	"DT_DT": [
+	'DT_DT': [
 		0.0017
 	],
-	"JJ_NNP": [
+	'JJ_NNP': [
 		0.0366
 	],
-	"JJ_MD": [
+	'JJ_MD': [
 		0.0004
 	],
-	"JJ_VB": [
+	'JJ_VB': [
 		0.0001
 	],
-	"JJ_JJ": [
+	'JJ_JJ': [
 		0.0733
 	],
-	"JJ_NN": [
+	'JJ_NN': [
 		0.4509
 	],
-	"JJ_RB": [
+	'JJ_RB': [
 		0.0036
 	],
-	"JJ_DT": [
+	'JJ_DT': [
 		0.0036
 	],
-	"RB_NNP": [
+	'RB_NNP': [
 		0.0068
 	],
-	"RB_MD": [
+	'RB_MD': [
 		0.0102
 	],
-	"RB_VB": [
+	'RB_VB': [
 		0.1011
 	],
-	"RB_JJ": [
+	'RB_JJ': [
 		0.1012
 	],
-	"RB_NN": [
+	'RB_NN': [
 		0.01216
 	],
-	"RB_RB": [
+	'RB_RB': [
 		0.0728
 	],
-	"VB_MD": [
+	'VB_MD': [
 		0.0005
 	],
-	"VB_VB": [
+	'VB_VB': [
 		0.005
 	],
-	"VB_JJ": [
+	'VB_JJ': [
 		0.0837
 	],
-	"VB_NN": [
+	'VB_NN': [
 		0.0615
 	],
-	"VB_RB": [
+	'VB_RB': [
 		0.0514
 	],
-	"VB_DT": [
+	'VB_DT': [
 		0.2231
 	],
-	"NN_NNP": [
+	'NN_NNP': [
 		0.0096
 	],
-	"NN_MD": [
+	'NN_MD': [
 		0.0176
 	],
-	"NN_VB": [
+	'NN_VB': [
 		0.0014
 	],
-	"NN_JJ": [
+	'NN_JJ': [
 		0.0086
 	],
-	"NN_NN": [
+	'NN_NN': [
 		0.1216
 	],
-	"NN_RB": [
+	'NN_RB': [
 		0.0177
 	],
-	"NN_DT": [
+	'NN_DT': [
 		0.0068
 	],
-	"NNP_NNP": [
+	'NNP_NNP': [
 		0.3777
 	],
-	"NNP_MD": [
+	'NNP_MD': [
 		0.0110
 	],
-	"NNP_VB": [
+	'NNP_VB': [
 		0.0009
 	],
-	"NNP_JJ": [
+	'NNP_JJ': [
 		0.0084
 	],
-	"NNP_NN": [
+	'NNP_NN': [
 		0.0584
 	],
-	"NNP_RB": [
+	'NNP_RB': [
 		0.009
 	],
-	"NNP_DT": [
+	'NNP_DT': [
 		0.0025
 	],
-	"IN_NNP": [
+	'IN_NNP': [
 		0.2
 	],
-	"IN_MD": [
+	'IN_MD': [
 		0.05
 	],
-	"IN_VB": [
+	'IN_VB': [
 		0.1
 	],
-	"IN_JJ": [
+	'IN_JJ': [
 		0.05
 	],
-	"IN_NN": [
+	'IN_NN': [
 		0.19
 	],
-	"IN_RB": [
+	'IN_RB': [
 		0.13
 	],
-	"IN_DT": [
+	'IN_DT': [
 		0.32
 	],
-	"DT_NNP": [
+	'DT_NNP': [
 		0.1147
 	],
-	"DT_MD": [
+	'DT_MD': [
 		0.0021
 	],
-	"DT_VB": [
+	'DT_VB': [
 		0.0002
 	],
-	"DT_JJ": [
+	'DT_JJ': [
 		0.2157
 	],
-	"DT_NN": [
+	'DT_NN': [
 		0.4744
 	],
-	"DT_RB": [
+	'DT_RB': [
 		0.0102
 	],
-	"DT_DT": [
+	'DT_DT': [
 		0.0017
 	]
-}
-
-module.exports = {
-	bigramProbabilities: bigramProbabilities
 }

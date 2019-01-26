@@ -1,6 +1,6 @@
 {
-  "name": "finalproject",
-  "version": "1.0.0",
+  "name": "Adjective Finder",
+  "version": "1.0.1",
   "description": "The Adjective Finder algorithm is a Natural Language Processing(NLP) application searching for adjectives by comparing the words in the input to the Part-Of-Speech(POS) Lexicon as compilated by Eric Brill in 1993. The lexicon is an extensive word list with POS word type tags:",
   "main": "app.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/wassbeer/NLP-Application.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Thomas Wassenberg",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/wassbeer/NLP-Application/issues"
