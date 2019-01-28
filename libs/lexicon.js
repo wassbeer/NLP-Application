@@ -38137,7 +38137,7 @@ module.exports = {
     "best": [
         "JJ",
         "RB",
-        "JJS",
+        "JJ",
         "NN",
         "RB"
     ],
