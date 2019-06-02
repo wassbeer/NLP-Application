@@ -1,10 +1,13 @@
 {
-  "name": "Adjective Finder",
+  "name": "adjectivefilter",
   "version": "1.0.1",
   "description": "The Adjective Finder algorithm is a Natural Language Processing(NLP) application searching for adjectives by comparing the words in the input to the Part-Of-Speech(POS) Lexicon as compilated by Eric Brill in 1993. The lexicon is an extensive word list with POS word type tags:",
-  "main": "app.js",
+  "main": "./scripts/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest ./dist",
+    "build": "babel ./src --out-dir ./dist --ignore ./scripts/lexicon.js && babel ./test --out-dir ./dist",
+    "start": "node ./dist/scripts/main.js",
+    "debug": "node --inspect-brk ./dist/main.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +22,16 @@
   "homepage": "https://github.com/wassbeer/NLP-Application#readme",
   "dependencies": {
     "csv": "^1.1.1",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "gulp": "^4.0.0",
+    "gulp-group": "^1.0.0",
+    "gulp-util": "^3.0.8"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "gulp-babel": "^8.0.0-beta.2",
+    "jest": "^24.5.0"
   }
 }
