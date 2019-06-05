@@ -1,9 +1,9 @@
-$(document).ready(function() {
+$(document).ready(() => {
 	$('circle').hover(
-		function() {
+		() => {
 			$(this).addClass( 'yellow' );
 		},
-		function() {
+		() => {
 			$(this).removeClass( 'yellow' );
 		}
 	);

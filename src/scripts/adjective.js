@@ -4,13 +4,13 @@ import * as bigramProbabilities from './bigramProbabilities';
 import * as data from './data'
 
 module.exports = {
-    isCertain: function(e) {
+    isCertain: (e) => {
         return lexicon[e] && lexicon[e].length === 1 && lexicon[e][0] === 'JJ';
     },
-    // isUncertain: function(e) {
+    // isUncertain: (e) => {
     //     return lexicon[e] && lexicon[e].length > 1 && lexicon[e].indexOf('JJ') > -1;
     // },
-    // isPotential: function(word, i, textArray) {
+    // isPotential: (word, i, textArray) => {
     //     if (this.isUncertain(word)) {
     //         let wordTags = lexicon[textArray[i - 1]],
     //             beforeTags = lexicon[textArray[i - 2]],
@@ -68,7 +68,7 @@ module.exports = {
     //         probableAdjectives = potAdjWithContexts.filter(isProbableAdjective);
     //     return probableAdjectives;
     // },
-    // isProbable: function(ambAdj, j) {
+    // isProbable: (ambAdj, j) => {
     //     return ambAdj.bigrams[j].probability >= ambAdj.bigrams[j - 1].probability || ambAdj.bigrams[j - 1].probability === undefined;
     //     // function to return the most probably bigram tag is JJ
     // }

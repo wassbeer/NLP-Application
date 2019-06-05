@@ -2,13 +2,13 @@ import { csvAdjective } from './libs/prototypes';
 import * as stringify from 'csv-stringify';
 
 module.exports = {
-    prepare: function(certainAndProbableAdjectives){
+    prepare: (certainAndProbableAdjectives) => {
         certainAndProbableAdjectives.map((e) => {
             return new csvAdjective(e.word, e.frequency);
         });
         return certainAndProbableAdjectives;
     },
-	toCSV: function(certainAndProbableAdjectives) {
+	toCSV: (certainAndProbableAdjectives) => {
         const csvData = this.prepare(certainAndProbableAdjectives);
         stringify(csvData, (err, output) => {
             if (err) { throw err; }
