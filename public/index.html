@@ -20,14 +20,11 @@
       ></svg>
       <script src="https://d3js.org/d3.v4.min.js"></script>
       <script>
-        var svg = d3.select("svg"),
-          width = +svg.attr("width"),
-          height = +svg.attr("height");
-
+        var svg = d3.select("svg");
+        var width = +svg.attr("width");
+        var height = +svg.attr("height");
         var format = d3.format(",d");
-
         var color = d3.scaleOrdinal(d3.schemeCategory20);
-
         var pack = d3.pack().size([width, height]).padding(1.5);
 
         d3.csv(
