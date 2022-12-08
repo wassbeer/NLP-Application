@@ -21,7 +21,7 @@
   "homepage": "https://github.com/wassbeer/NLP-Application#readme",
   "dependencies": {
     "csv": "^5.3.2",
-    "express": "^4.16.4"
+    "express": "^4.18.2"
   },
   "devDependencies": {
     "eslint": "^7.13.0"
